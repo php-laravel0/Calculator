@@ -32,6 +32,7 @@ class Calculator {
     if (number === "." && this.currentOperand.includes(".")) return;
     
 
+
     //  current operator number is assigned to be a string in order to not be added as a number so when you add 1 to your input box twice it gives you 11 instead of 2
     this.currentOperand = this.currentOperand.toString() + number.toString();
 
@@ -44,7 +45,9 @@ class Calculator {
 
     
 // when the operator input box is empty then you can select an operation but if it is not empty then it will compute() and give you the result
-    if (this.currentOperand === "") return;
+    if (this.currentOperand === "") {
+      this.compute()
+    }//return;
      
     
     
@@ -207,6 +210,7 @@ operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     calculator.chooseOperation(button.innerText); 
     calculator.updateDisplay();
+    console.log(button.innerText)
   });
 });
 
