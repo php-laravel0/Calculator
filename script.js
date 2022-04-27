@@ -70,7 +70,7 @@ class Calculator {
   
   // if either the current or previous methods are NaN(not a number) it will return a switch method for the operators 
   if (isNaN(prev) || isNaN(current)) return;
-    
+
   switch (this.operation) {
 
     case "+":
@@ -90,6 +90,13 @@ class Calculator {
 
     case "÷":
       computation = prev / current;
+
+      if (prev == 0 && current == 0) {
+
+       this.currentOperand
+
+       }
+
       break;
 
 
@@ -141,16 +148,18 @@ class Calculator {
 
   //  Updates the display of your output box by changing the inner text and giving it the .getDisplayNumber() method
   updateDisplay() {
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(
-      this.currentOperand
-    );
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+
+    // if this.operation = 
+    
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(
-        this.previousOperand
-      )} ${this.operation}`;
-    } else {
-      this.previousOperandTextElement.innerText = "";
+      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+    } else if (this.currentOperand = prev / current) {
+
+      // 
+      this.previousOperandTextElement.innerText = "Cannot Divide"
     }
+    
   }
 }
 
