@@ -150,14 +150,21 @@ class Calculator {
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
 
+    let prev = parseFloat(this.previousOperand);
+    let current = parseFloat(this.currentOperand);
     // if this.operation = 
     
     if (this.operation != null) {
       this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
-    } else if (this.currentOperand = prev / current) {
+    } else if (this.previousOperandTextElement.innerText = "") {
+     
 
-      // 
-      this.previousOperandTextElement.innerText = "Cannot Divide"
+    }
+    
+  if ( prev == 0 && current == 0 ) {
+
+      this.previousOperandTextElement.innerText = "cannot divide by zero"
+      this.currentOperandTextElement.innerText = ""
     }
     
   }
