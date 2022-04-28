@@ -172,6 +172,7 @@ class Calculator {
 
       this.previousOperandTextElement.innerText = "cannot divide by zero"
       this.currentOperandTextElement.innerText = ""
+      
     }
     
   }
