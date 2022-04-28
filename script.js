@@ -64,7 +64,7 @@ class Calculator {
   compute() {
     let computation;
 
-    // parseFloat converts it to a string first and then returns a floating point number
+
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
   
@@ -79,9 +79,16 @@ class Calculator {
 
 
     case "-":
-      computation = prev - current;
-      break;
+      computation = prev - current  ;
 
+
+      break; 
+
+    
+
+      case "^": 
+      computation = prev ** current;
+      break;
 
     case "*":
       computation = prev * current;
@@ -107,7 +114,7 @@ class Calculator {
 
     this.currentOperand = computation;
     this.operation = undefined;
-    this.previousOpernad = "";
+    this.previousOperand = "";
   }
 
 
@@ -155,7 +162,7 @@ class Calculator {
     // if this.operation = 
     
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+      this.previousOperandTextElement.innerText = ` ${this.getDisplayNumber(this.previousOperand)}  ${this.operation}`;
     } else if (this.previousOperandTextElement.innerText = "") {
      
 

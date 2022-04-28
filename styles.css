@@ -79,3 +79,8 @@
   button {
     color: rgb(0, 0, 0);
   }
+  
+  #Exponent {
+    width: 100px;
+    height: 100px;
+  }
