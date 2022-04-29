@@ -4,17 +4,12 @@
 class Calculator {
   // A constructor method is a method of a class for creating an object for that class
 
-
-
-
   // previousOperandTextElement and currentOperandTextElement are given a this. to refer to the object it gives you the current digit output and the previous digit output
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
     this.clear();
   }
-
-
 
   clear() {
     this.currentOperand = "";
@@ -30,27 +25,18 @@ class Calculator {
 
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) return;
-    
-
 
     //  current operator number is assigned to be a string in order to not be added as a number so when you add 1 to your input box twice it gives you 11 instead of 2
     this.currentOperand = this.currentOperand.toString() + number.toString();
-
   }
 
   // Which operation sign you can choose
 
-
   chooseOperation(operation) {
-
-    
-// when the operator input box is empty then you can select an operation but if it is not empty then it will compute() and give you the result
+    // when the operator input box is empty then you can select an operation but if it is not empty then it will compute() and give you the result
     if (this.currentOperand === "") {
-      this.compute()
-    }//return;
-     
-    
-    
+    } //return;
+
     if (this.previousOperand !== "") {
       this.compute();
     }
@@ -64,125 +50,108 @@ class Calculator {
   compute() {
     let computation;
 
-
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
-  
-  // if either the current or previous methods are NaN(not a number) it will return a switch method for the operators 
-  if (isNaN(prev) || isNaN(current)) return;
 
-  switch (this.operation) {
+    // if either the current or previous methods are NaN(not a number) it will return a switch method for the operators
+    if (isNaN(prev) || isNaN(current)) return;
 
-    case "+":
-      computation = prev + current;
-      break;
+    switch (this.operation) {
+      case "+":
+        computation = prev + current;
+        break;
 
+      case "-":
+        computation = prev - current;
 
-    case "-":
-      computation = prev - current  ;
+        break;
 
+      case "^":
+        computation = prev ** current;
+        break;
 
-      break; 
+      case "*":
+        computation = prev * current;
+        break;
 
-    
+      case "÷":
+        computation = prev / current;
 
-      case "^": 
-      computation = prev ** current;
-      break;
+        if (prev == 0 && current == 0) {
+          this.updateDisplay()
+        }
 
-    case "*":
-      computation = prev * current;
-      break;
+        break;
 
-
-    case "÷":
-      computation = prev / current;
-
-      if (prev == 0 && current == 0) {
-
-       this.currentOperand
-
-       }
-
-      break;
-
-
-    default:
-      return;
-  }
-
+      default:
+        return;
+    }
 
     this.currentOperand = computation;
     this.operation = undefined;
     this.previousOperand = "";
   }
 
-
   // displays your numbers by presenting them as a str with .toString()
   getDisplayNumber(number) {
-    
     // used for the comma system in the calculator
 
     const stringNumber = number.toString();
 
     const integerDigits = parseFloat(stringNumber.split(".")[0]);
-    
+
     const decimalDigits = stringNumber.split(".")[1];
 
+    let integerDisplay;
 
-    
-    
-    let integerDisplay; 
-    
     if (isNaN(integerDigits)) {
       integerDisplay = "";
-    
     } else {
       integerDisplay = integerDigits.toLocaleString("en", {
         maximumFractionDigits: 0,
       });
-    
     }
-    
+
     if (decimalDigits != null) {
       return `${integerDisplay}.${decimalDigits}`;
-    
-    
     } else {
       return integerDisplay;
     }
   }
 
+
   //  Updates the display of your output box by changing the inner text and giving it the .getDisplayNumber() method
   updateDisplay() {
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(
+      this.currentOperand
+    );
 
     let prev = parseFloat(this.previousOperand);
     let current = parseFloat(this.currentOperand);
-    // if this.operation = 
-    
+    // if this.operation =
+
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText = ` ${this.getDisplayNumber(this.previousOperand)}  ${this.operation}`;
-    } else if (this.previousOperandTextElement.innerText = "") {
+      this.previousOperandTextElement.innerText = ` ${this.getDisplayNumber(
+        this.previousOperand
+      )} ${this.operation}`;
+    } else if ((this.previousOperandTextElement.innerText = "")) {
+    }
+
+    if (this.operation == "-") {
+      computation == current + -prev;
+      this.previousOperandTextElement.innerText = `  ${this.operation}  ${this.getDisplayNumber(this.previousOperand)} `;
      
-
     }
-    
-  if ( prev == 0 && current == 0 ) {
 
-      this.previousOperandTextElement.innerText = "cannot divide by zero"
-      this.currentOperandTextElement.innerText = ""
-      
+    if (this.operation == '/') {
+   
     }
-    
   }
 }
 
 //DOM for selecting all the elements and changing the innerHTML
 
-
 // this DOM querySelectorAll selects the data-number elements in index.html with buttons for the digits
-
 
 const numberButtons = document.querySelectorAll("[data-number]");
 
@@ -191,17 +160,14 @@ const operationButtons = document.querySelectorAll("[data-operation]");
 
 const equalsButton = document.querySelector("[data-equals]");
 
-
 const deleteButton = document.querySelector("[data-delete]");
 
 const allClearButton = document.querySelector("[data-all-clear]");
-
 
 // DOM selects the previous entered values
 const previousOperandTextElement = document.querySelector(
   "[data-previous-operand]"
 );
-
 
 // DOM selects the current entered value
 const currentOperandTextElement = document.querySelector(
@@ -217,8 +183,6 @@ const calculator = new Calculator(
 
 // numbers for the calculator
 
-
-
 // In this section for the inner html text to be changed inside the buttons a common theme is a method followed by .updateDisplay() to then change it
 
 numberButtons.forEach((button) => {
@@ -228,13 +192,12 @@ numberButtons.forEach((button) => {
   });
 });
 
-// operator signs like * / - + = are given functionality with the .chooseOperation() method 
+// operator signs like * / - + = are given functionality with the .chooseOperation() method
 
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    calculator.chooseOperation(button.innerText); 
+    calculator.chooseOperation(button.innerText);
     calculator.updateDisplay();
-
   });
 });
 
@@ -250,7 +213,7 @@ allClearButton.addEventListener("click", (button) => {
   calculator.updateDisplay();
 });
 
-// It gives functionality for deleting a single digit at a time like a backspace button by deleting one string at a time with the .slice() in the .delete() method where it goes from 0, -1 
+// It gives functionality for deleting a single digit at a time like a backspace button by deleting one string at a time with the .slice() in the .delete() method where it goes from 0, -1
 
 deleteButton.addEventListener("click", (button) => {
   calculator.delete();
