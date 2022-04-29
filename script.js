@@ -76,6 +76,12 @@ class Calculator {
 
       case "÷":
         computation = prev / current;
+        
+        if (prev == 0 && current == 0) {
+          this.updateDisplay()
+          console.log("test")
+
+        }
 
         
         break;
@@ -141,11 +147,11 @@ class Calculator {
     }
     
     
-    if ( prev == 0 && current == 0 ) {
+    // if ( prev == 0 && current == 0 ) {
   
-      this.previousOperandTextElement.innerText = "cannot divide by zero"
-      this.currentOperandTextElement.innerText = ""
-    }
+    //   this.previousOperandTextElement.innerText = "cannot divide by zero"
+    //   this.currentOperandTextElement.innerText = ""
+    // }
   }
 }
 
