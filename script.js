@@ -78,7 +78,7 @@ class Calculator {
         computation = prev / current;
 
         if (prev == 0 && current == 0) {
-          this.updateDisplay()
+          this.updateDisplay()  
         }
 
         break;
@@ -143,10 +143,9 @@ class Calculator {
      
     }
 
-    if (this.operation == '/') {
    
     }
-  }
+  
 }
 
 //DOM for selecting all the elements and changing the innerHTML
