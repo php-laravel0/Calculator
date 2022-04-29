@@ -77,10 +77,7 @@ class Calculator {
       case "÷":
         computation = prev / current;
 
-        if (prev == 0 && current == 0) {
-          this.updateDisplay()  
-        }
-
+        
         break;
 
       default:
@@ -136,16 +133,20 @@ class Calculator {
       )} ${this.operation}`;
     } else if ((this.previousOperandTextElement.innerText = "")) {
     }
-
+    
     if (this.operation == "-") {
       computation == current + -prev;
       this.previousOperandTextElement.innerText = `  ${this.operation}  ${this.getDisplayNumber(this.previousOperand)} `;
-     
+      
     }
-
-   
-    }
+    
+    
+    if ( prev == 0 && current == 0 ) {
   
+      this.previousOperandTextElement.innerText = "cannot divide by zero"
+      this.currentOperandTextElement.innerText = ""
+    }
+  }
 }
 
 //DOM for selecting all the elements and changing the innerHTML
