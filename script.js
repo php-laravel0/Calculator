@@ -70,15 +70,14 @@ class Calculator {
         computation = prev ** current;
         break;
 
-      case "*":      
-                if (prev == 0 && current == 0) {
-                  calculator.updateDisplay("Cannot divide by zero.");
-                  break;
-                }
+      case "*":
+        if (prev == 0 && current == 0) {
+          calculator.updateDisplay("Cannot divide by zero.");
+          break;
+        }
         computation = prev * current;
         break;
 
-        
         break;
 
       default:
@@ -117,38 +116,36 @@ class Calculator {
     }
   }
 
-
   //  Updates the display of your output box by changing the inner text and giving it the .getDisplayNumber() method
   updateDisplay(text = null) {
-
     if (text) {
       this.currentOperandTextElement.innerText = "";
       this.previousOperandTextElement.innerText = text;
       return;
     }
 
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(
+      this.currentOperand
+    );
 
     let prev = parseFloat(this.previousOperand);
     let current = parseFloat(this.currentOperand);
-    // if this.operation = 
+    // if this.operation =
 
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
-    } else if (this.previousOperandTextElement.innerText = "") {
+      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(
+        this.previousOperand
+      )} ${this.operation}`;
+    } else if ((this.previousOperandTextElement.innerText = "")) {
     }
-
   }
 }
-    
-    
-    // if ( prev == 0 && current == 0 ) {
-  
-    //   this.previousOperandTextElement.innerText = "cannot divide by zero"
-    //   this.currentOperandTextElement.innerText = ""
-    // }
 
+// if ( prev == 0 && current == 0 ) {
 
+//   this.previousOperandTextElement.innerText = "cannot divide by zero"
+//   this.currentOperandTextElement.innerText = ""
+// }
 
 //DOM for selecting all the elements and changing the innerHTML
 
