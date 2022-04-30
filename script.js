@@ -70,18 +70,13 @@ class Calculator {
         computation = prev ** current;
         break;
 
-      case "*":
+      case "*":      
+                if (prev == 0 && current == 0) {
+                  calculator.updateDisplay("Cannot divide by zero.");
+                  break;
+                }
         computation = prev * current;
         break;
-
-      case "÷":
-        computation = prev / current;
-        
-        if (prev == 0 && current == 0) {
-          this.updateDisplay()
-          console.log("test")
-
-        }
 
         
         break;
@@ -124,27 +119,27 @@ class Calculator {
 
 
   //  Updates the display of your output box by changing the inner text and giving it the .getDisplayNumber() method
-  updateDisplay() {
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(
-      this.currentOperand
-    );
+  updateDisplay(text = null) {
+
+    if (text) {
+      this.currentOperandTextElement.innerText = "";
+      this.previousOperandTextElement.innerText = text;
+      return;
+    }
+
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
 
     let prev = parseFloat(this.previousOperand);
     let current = parseFloat(this.currentOperand);
-    // if this.operation =
+    // if this.operation = 
 
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText = ` ${this.getDisplayNumber(
-        this.previousOperand
-      )} ${this.operation}`;
-    } else if ((this.previousOperandTextElement.innerText = "")) {
+      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+    } else if (this.previousOperandTextElement.innerText = "") {
     }
-    
-    if (this.operation == "-") {
-      computation == current + -prev;
-      this.previousOperandTextElement.innerText = `  ${this.operation}  ${this.getDisplayNumber(this.previousOperand)} `;
-      
-    }
+
+  }
+}
     
     
     // if ( prev == 0 && current == 0 ) {
@@ -152,8 +147,8 @@ class Calculator {
     //   this.previousOperandTextElement.innerText = "cannot divide by zero"
     //   this.currentOperandTextElement.innerText = ""
     // }
-  }
-}
+
+
 
 //DOM for selecting all the elements and changing the innerHTML
 
