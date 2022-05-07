@@ -71,21 +71,30 @@ class Calculator {
         break;
 
       case "*":
-        if (prev == 0 && current == 0) {
-          calculator.updateDisplay("Cannot divide by zero.");
-          break;
-        }
         computation = prev * current;
         break;
 
-        break;
+      case "÷":
+        computation = prev / current;
+        if (prev / current && prev == 0 && current == 0) {
+        
+          console.log("test")
+          calculator.updateDisplay("cannot compute");
+          
+        }
+          break;
+
+        
+       
 
       default:
         return;
     }
 
     this.currentOperand = computation;
+
     this.operation = undefined;
+    
     this.previousOperand = "";
   }
 
@@ -116,36 +125,40 @@ class Calculator {
     }
   }
 
-  //  Updates the display of your output box by changing the inner text and giving it the .getDisplayNumber() method
-  updateDisplay(text = null) {
-    if (text) {
-      this.currentOperandTextElement.innerText = "";
-      this.previousOperandTextElement.innerText = text;
-      return;
-    }
 
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(
-      this.currentOperand
-    );
+  //  Updates the display of your output box by changing the inner text and giving it the .getDisplayNumber() method
+  updateDisplay() {
+
+    // if (text) {
+    //   this.currentOperandTextElement.innerText = "";
+    //   this.previousOperandTextElement.innerText = text;
+    //   return;
+    // }
+
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
 
     let prev = parseFloat(this.previousOperand);
     let current = parseFloat(this.currentOperand);
-    // if this.operation =
+    // if this.operation = 
 
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(
-        this.previousOperand
-      )} ${this.operation}`;
-    } else if ((this.previousOperandTextElement.innerText = "")) {
+      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+    } else if (this.previousOperandTextElement.innerText = "") {
+      // 💡 Why is this empty?
     }
+
+    if (this.operation == prev / current && prev == 0 && current == 0) {
+      
+      console.log("test")
+      this.previousOperandTextElement.innerText = ""
+      this.currentOperandandTextElement.innerText = "cannot operate"
+      
+
+    } 
   }
-}
 
-// if ( prev == 0 && current == 0 ) {
-
-//   this.previousOperandTextElement.innerText = "cannot divide by zero"
-//   this.currentOperandTextElement.innerText = ""
-// }
+ 
+  }
 
 //DOM for selecting all the elements and changing the innerHTML
 
